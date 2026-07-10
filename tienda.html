@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tienda · NexPlay</title>
+<meta name="description" content="Catálogo NexPlay: consolas, accesorios y videojuegos con buscador y filtros por plataforma.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="nav-wrap">
+    <a href="index.html" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
+    <nav class="main-nav">
+      <a href="index.html">Inicio</a>
+      <a href="tienda.html" class="active">Tienda</a>
+      <a href="blog.html">Blog y Noticias</a>
+      <a href="soporte.html">Soporte</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#tienda-catalogo" class="icon-btn" aria-label="Ir al buscador" title="Buscar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+      </a>
+      <a href="#" class="icon-btn" aria-label="Ver carrito" title="Carrito">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h9.2a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+      </a>
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section style="padding-bottom:0;">
+    <div class="container">
+      <p class="eyebrow">Catálogo completo</p>
+      <h1 style="font-size:clamp(1.9rem,3.6vw,2.8rem); color:#fff; max-width:640px;">Tienda NexPlay</h1>
+      <p style="max-width:560px; font-size:1.02rem;">Consolas, accesorios y videojuegos con ficha técnica real, precio con historial y reseñas verificadas por compra.</p>
+    </div>
+  </section>
+
+  <section id="tienda-catalogo">
+    <div class="container">
+
+      <!-- MÓDULO: Buscador + filtros -->
+      <div class="search-module">
+        <div class="search-row">
+          <div class="search-input">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#6f6693"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="text" id="product-search" placeholder="Buscar por nombre: 'headset', 'switch', 'ssd'…" aria-label="Buscar producto">
+          </div>
+          <div class="select-wrap">
+            <select id="sort-select" aria-label="Ordenar por">
+              <option value="relevancia">Ordenar: Relevancia</option>
+              <option value="precio-asc">Precio: menor a mayor</option>
+              <option value="precio-desc">Precio: mayor a menor</option>
+              <option value="rating">Mejor calificados</option>
+            </select>
+          </div>
+        </div>
+        <div class="filter-chips">
+          <span class="chip active" data-platform="todas">Todas las plataformas</span>
+          <span class="chip" data-platform="ps5">PlayStation 5</span>
+          <span class="chip" data-platform="xbox">Xbox Series X|S</span>
+          <span class="chip" data-platform="switch">Nintendo Switch</span>
+          <span class="chip" data-platform="pc">PC Gaming</span>
+          <span class="chip" data-platform="retro">Retrogaming</span>
+        </div>
+        <p class="results-count" id="results-count">12 productos encontrados</p>
+      </div>
+
+      <!-- GRID DE PRODUCTOS -->
+      <div class="grid grid-4" id="product-grid">
+
+        <div class="card" data-product data-name="PlayStation 5 Slim" data-platform="ps5" data-price="11499" data-rating="5">
+          <div class="media"><img src="assets/img/console-ps.svg" alt="Consola PlayStation 5 Slim" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Consola · PS5</span>
+            <h3>PlayStation 5 Slim</h3>
+            <p class="desc">1TB SSD, control DualSense incluido.</p>
+            <div class="meta"><span class="price">$11,499</span><span class="stars">★★★★★</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="Xbox Series X" data-platform="xbox" data-price="11999" data-rating="5">
+          <div class="media"><img src="assets/img/console-xbox.svg" alt="Consola Xbox Series X" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Consola · Xbox</span>
+            <h3>Xbox Series X</h3>
+            <p class="desc">1TB SSD, 4K nativo, retrocompatible.</p>
+            <div class="meta"><span class="price">$11,999</span><span class="stars">★★★★★</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="Nintendo Switch OLED" data-platform="switch" data-price="7799" data-rating="4">
+          <div class="media"><img src="assets/img/console-switch.svg" alt="Consola híbrida Nintendo Switch OLED" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Consola · Switch</span>
+            <h3>Switch OLED</h3>
+            <p class="desc">Pantalla OLED 7", edición estándar.</p>
+            <div class="meta"><span class="price"><span class="old">$8,999</span>$7,799</span><span class="stars">★★★★☆</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="Cartucho Colección 16-bit" data-platform="retro" data-price="1299" data-rating="4">
+          <div class="media"><img src="assets/img/console-retro.svg" alt="Cartucho retro edición coleccionista de 16 bits" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Retro</span>
+            <h3>Cartucho Colección 16-bit</h3>
+            <p class="desc">Edición restaurada, caja e instructivo.</p>
+            <div class="meta"><span class="price">$1,299</span><span class="stars">★★★★☆</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="Headset Inalámbrico Pro" data-platform="pc" data-price="1899" data-rating="5">
+          <div class="media"><img src="assets/img/acc-headset.svg" alt="Audífonos gaming inalámbricos con micrófono" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Accesorio</span>
+            <h3>Headset Inalámbrico Pro</h3>
+            <p class="desc">Sonido envolvente 7.1, batería 20h.</p>
+            <div class="meta"><span class="price">$1,899</span><span class="stars">★★★★★</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="Teclado Mecánico RGB" data-platform="pc" data-price="1599" data-rating="4">
+          <div class="media"><img src="assets/img/acc-keyboard.svg" alt="Teclado mecánico gaming con iluminación RGB" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Accesorio</span>
+            <h3>Teclado Mecánico RGB</h3>
+            <p class="desc">Switches táctiles, reposamuñecas incluido.</p>
+            <div class="meta"><span class="price">$1,599</span><span class="stars">★★★★☆</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="Control DualSense Extra" data-platform="ps5" data-price="1399" data-rating="5">
+          <div class="media"><img src="assets/img/acc-controller.svg" alt="Control inalámbrico adicional" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Accesorio · PS5</span>
+            <h3>Control DualSense Extra</h3>
+            <p class="desc">Vibración háptica, gatillos adaptativos.</p>
+            <div class="meta"><span class="price">$1,399</span><span class="stars">★★★★★</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="SSD NVMe 1TB Gaming" data-platform="pc" data-price="1699" data-rating="5">
+          <div class="media"><img src="assets/img/acc-storage.svg" alt="Unidad de almacenamiento SSD NVMe para gaming" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Accesorio</span>
+            <h3>SSD NVMe 1TB Gaming</h3>
+            <p class="desc">Lectura hasta 7000 MB/s, disipador incluido.</p>
+            <div class="meta"><span class="price">$1,699</span><span class="stars">★★★★★</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="Bundle Switch + Mario Kart" data-platform="switch" data-price="8499" data-rating="5">
+          <div class="media"><img src="assets/img/acc-bundle.svg" alt="Paquete consola Switch más videojuego" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Bundle</span>
+            <h3>Bundle Switch + Mario Kart</h3>
+            <p class="desc">Consola + juego físico, ahorro incluido.</p>
+            <div class="meta"><span class="price">$8,499</span><span class="stars">★★★★★</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="Galaxy Quest Edición Deluxe" data-platform="xbox" data-price="1199" data-rating="4">
+          <div class="media"><img src="assets/img/acc-game.svg" alt="Videojuego Galaxy Quest edición deluxe" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Videojuego</span>
+            <h3>Galaxy Quest: Edición Deluxe</h3>
+            <p class="desc">Incluye pase de temporada y skins exclusivas.</p>
+            <div class="meta"><span class="price">$1,199</span><span class="stars">★★★★☆</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="Handheld Retro Emulador" data-platform="retro" data-price="2199" data-rating="3">
+          <div class="media"><img src="assets/img/console-retro.svg" alt="Consola portátil retro con emulador integrado" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Retro</span>
+            <h3>Handheld Retro Emulador</h3>
+            <p class="desc">Miles de títulos clásicos preinstalados.</p>
+            <div class="meta"><span class="price">$2,199</span><span class="stars">★★★☆☆</span></div>
+          </div>
+        </div>
+
+        <div class="card" data-product data-name="Control Elite Series 2" data-platform="xbox" data-price="2599" data-rating="5">
+          <div class="media"><img src="assets/img/acc-controller.svg" alt="Control Xbox Elite Series 2" loading="lazy"></div>
+          <div class="body">
+            <span class="tag">Accesorio · Xbox</span>
+            <h3>Control Elite Series 2</h3>
+            <p class="desc">Componentes intercambiables, grip texturizado.</p>
+            <div class="meta"><span class="price">$2,599</span><span class="stars">★★★★★</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="empty-state" id="empty-state">Sin resultados. Prueba con otro término o quita algún filtro.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
+        <p style="margin-top:14px; max-width:280px;">Tienda de videojuegos, consolas y accesorios con contenido editorial y comunidad gamer mexicana.</p>
+      </div>
+      <div>
+        <h4>Explorar</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="tienda.html">Tienda</a></li>
+          <li><a href="blog.html">Blog y Noticias</a></li>
+          <li><a href="soporte.html">Soporte</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Plataformas</h4>
+        <ul>
+          <li><a href="tienda.html">PlayStation 5</a></li>
+          <li><a href="tienda.html">Xbox Series X|S</a></li>
+          <li><a href="tienda.html">Nintendo Switch</a></li>
+          <li><a href="tienda.html">Retrogaming</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <p>Recibe ofertas y noticias del mundo gamer cada semana.</p>
+        <form onsubmit="return false;" style="display:flex; gap:8px;">
+          <input type="email" placeholder="tu@correo.com" style="flex:1; background:var(--bg-alt); border:1px solid var(--line); border-radius:8px; padding:10px; color:var(--text);">
+          <button class="btn btn-primary" style="padding:10px 16px;">→</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 NexPlay · IEU · Sistemas de Administración de Contenidos</span>
+      <div class="footer-legal">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">LFPDPPP</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
