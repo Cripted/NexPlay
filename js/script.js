@@ -169,4 +169,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- Módulo: Formulario "Comparte tu experiencia" (Comunidad) ---------- */
+  const reviewForm = document.getElementById('review-form');
+  if (reviewForm) {
+    const reviewSuccess = document.getElementById('review-success');
+
+    reviewForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      const fields = [
+        { id: 'review-nombre',  check: v => v.trim().length >= 2, msg: 'Ingresa tu nombre o alias.' },
+        { id: 'review-titulo',  check: v => v.trim().length >= 3, msg: 'Selecciona el título que quieres reseñar.' },
+        { id: 'review-rating',  check: v => v !== '',             msg: 'Selecciona una calificación.' },
+        { id: 'review-texto',   check: v => v.trim().length >= 15, msg: 'Cuéntanos un poco más (mínimo 15 caracteres).' },
+      ];
+
+      fields.forEach(f => {
+        const el = document.getElementById(f.id);
+        const row = el.closest('.form-row');
+        if (!f.check(el.value)) {
+          row.classList.add('error');
+          valid = false;
+        } else {
+          row.classList.remove('error');
+        }
+      });
+
+      if (!valid) return;
+
+      reviewForm.style.display = 'none';
+      if (reviewSuccess) reviewSuccess.classList.add('show');
+    });
+
+    document.getElementById('review-reset-btn')?.addEventListener('click', () => {
+      reviewForm.reset();
+      reviewForm.style.display = '';
+      reviewSuccess?.classList.remove('show');
+      document.querySelectorAll('#review-form .form-row').forEach(r => r.classList.remove('error'));
+    });
+  }
+
 });

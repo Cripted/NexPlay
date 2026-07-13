@@ -125,6 +125,52 @@ function blogRespaldo(): array
 }
 
 // =====================================================================
+// COMUNIDAD
+// =====================================================================
+
+function obtenerComunidad(): array
+{
+    $pdo = conectarDB();
+    if ($pdo) {
+        try {
+            $stats = $pdo->query(
+                "SELECT miembros_activos, resenas_publicadas, discusiones_activas, insignias_otorgadas
+                 FROM comunidad_stats ORDER BY id DESC LIMIT 1"
+            )->fetch();
+            $contribuidores = $pdo->query(
+                "SELECT nombre, total_resenas, total_likes
+                 FROM comunidad_contribuidores ORDER BY total_likes DESC LIMIT 5"
+            )->fetchAll();
+            if ($stats && $contribuidores) {
+                return ['stats' => $stats, 'contribuidores' => $contribuidores];
+            }
+        } catch (PDOException $e) {
+            error_log('NexPlay DB: error al leer comunidad - ' . $e->getMessage());
+        }
+    }
+    return comunidadRespaldo();
+}
+
+function comunidadRespaldo(): array
+{
+    return [
+        'stats' => [
+            'miembros_activos'    => 28450,
+            'resenas_publicadas'  => 6120,
+            'discusiones_activas' => 1380,
+            'insignias_otorgadas' => 9740,
+        ],
+        'contribuidores' => [
+            ['nombre' => 'RonarX_MX',     'total_resenas' => 62, 'total_likes' => 410],
+            ['nombre' => 'LupitaGamer',   'total_resenas' => 54, 'total_likes' => 372],
+            ['nombre' => 'ByteVikingo',   'total_resenas' => 47, 'total_likes' => 301],
+            ['nombre' => 'PixelChilanga', 'total_resenas' => 39, 'total_likes' => 268],
+            ['nombre' => 'ElAztecaGamer', 'total_resenas' => 33, 'total_likes' => 219],
+        ],
+    ];
+}
+
+// =====================================================================
 // AYUDANTES DE PRESENTACIÓN (usados por las páginas .php)
 // =====================================================================
 

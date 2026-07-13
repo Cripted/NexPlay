@@ -20,6 +20,7 @@ $destacados = obtenerProductosDestacados(4);
       <a href="index.php" class="active">Inicio</a>
       <a href="pages/tienda.php">Tienda</a>
       <a href="pages/blog.php">Blog y Noticias</a>
+      <a href="pages/comunidad.php">Comunidad</a>
       <a href="pages/soporte.php">Soporte</a>
     </nav>
 
@@ -135,6 +136,9 @@ $destacados = obtenerProductosDestacados(4);
         <h2>Comunidad NexPlay</h2>
         <p>Un vistazo a los torneos, foros y wikis colaborativas construidas por la comunidad gamer. Haz clic en cualquier imagen para ampliarla.</p>
       </div>
+      <div style="margin:-8px 0 32px;">
+        <a href="pages/comunidad.php" class="btn btn-ghost">Ver comunidad completa →</a>
+      </div>
       <div class="gallery-grid">
         <div class="gallery-item">
           <img src="assets/img/gallery-torneo.svg" alt="Ilustración de trofeo de torneo esports NexPlay" loading="lazy">
@@ -183,6 +187,7 @@ $destacados = obtenerProductosDestacados(4);
           <li><a href="index.php">Inicio</a></li>
           <li><a href="pages/tienda.php">Tienda</a></li>
           <li><a href="pages/blog.php">Blog y Noticias</a></li>
+          <li><a href="pages/comunidad.php">Comunidad</a></li>
           <li><a href="pages/soporte.php">Soporte</a></li>
         </ul>
       </div>

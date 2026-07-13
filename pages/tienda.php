@@ -21,6 +21,7 @@ $total = count($productos);
       <a href="../index.php">Inicio</a>
       <a href="tienda.php" class="active">Tienda</a>
       <a href="blog.php">Blog y Noticias</a>
+      <a href="comunidad.php">Comunidad</a>
       <a href="soporte.php">Soporte</a>
     </nav>
     <div class="nav-actions">
@@ -121,6 +122,7 @@ $total = count($productos);
           <li><a href="../index.php">Inicio</a></li>
           <li><a href="tienda.php">Tienda</a></li>
           <li><a href="blog.php">Blog y Noticias</a></li>
+          <li><a href="comunidad.php">Comunidad</a></li>
           <li><a href="soporte.php">Soporte</a></li>
         </ul>
       </div>

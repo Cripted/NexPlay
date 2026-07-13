@@ -411,6 +411,64 @@ nav.main-nav a.active{ color: #0a0716; background: var(--grad-pc); }
   cursor:pointer; font-size: 1.3rem;
 }
 
+/* ---------- Comunidad: grid de acciones ---------- */
+.community-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:22px; }
+.community-card{
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px 28px;
+  transition: transform .18s ease, border-color .18s ease;
+  position: relative;
+  overflow: hidden;
+}
+.community-card::before{
+  content:"";
+  position:absolute; top:0; left:22px;
+  width: 46px; height: 12px;
+  background: var(--grad-pc);
+  border-radius: 0 0 6px 6px;
+}
+.community-card:hover{ transform: translateY(-4px); border-color: var(--purple-soft); }
+.community-icon{
+  width: 52px; height: 52px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius: 14px;
+  background: rgba(124,58,237,.14);
+  color: var(--cyan);
+  margin-bottom: 18px;
+}
+.community-card h3{ font-size: 1.2rem; color:#fff; }
+.community-card p{ font-size: .92rem; margin-bottom: 18px; }
+.community-card .read-more{ font-size: .92rem; }
+
+/* ---------- Comunidad: top contribuidores ---------- */
+.contributors-list{ display:flex; flex-direction:column; gap:12px; max-width: 640px; }
+.contributor{
+  display:flex; align-items:center; gap:18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  transition: border-color .15s ease, background .15s ease;
+}
+.contributor:hover{ border-color: var(--purple-soft); background: var(--panel-2); }
+.contributor-rank{
+  flex-shrink:0;
+  width: 42px; height:42px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius: 50%;
+  font-family: var(--font-display); font-weight:700; font-size:1.05rem;
+  background: var(--panel-2);
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+.contributor:nth-child(1) .contributor-rank{ background: var(--grad-oc); color:#24140a; border-color:transparent; }
+.contributor:nth-child(2) .contributor-rank{ background: var(--grad-pc); color:#0a0716; border-color:transparent; }
+.contributor:nth-child(3) .contributor-rank{ background: rgba(244,114,182,.25); color: var(--pink); border-color: rgba(244,114,182,.4); }
+.contributor-info strong{ display:block; color:#fff; font-family: var(--font-display); font-size: 1.02rem; margin-bottom:2px; }
+.contributor-info p{ margin:0; font-size:.85rem; color: var(--muted-2); }
+
 /* ---------- FAQ accordion ---------- */
 .faq-item{
   border: 1px solid var(--line);
@@ -525,6 +583,7 @@ footer.site{
   .footer-grid{ grid-template-columns: 1fr 1fr; }
   .gallery-grid{ grid-template-columns: repeat(2,1fr); }
   .kpi-strip{ grid-template-columns: repeat(2,1fr); }
+  .community-grid{ grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 720px){
   nav.main-nav{
@@ -541,6 +600,7 @@ footer.site{
     background: var(--panel); border:1px solid var(--line); color:#fff; cursor:pointer;
   }
   .grid-4, .grid-3, .grid-2{ grid-template-columns: 1fr; }
+  .community-grid{ grid-template-columns: 1fr; }
   .gallery-grid{ grid-template-columns: repeat(2,1fr); }
   .footer-grid{ grid-template-columns: 1fr; }
   .two-col{ grid-template-columns: 1fr; }
