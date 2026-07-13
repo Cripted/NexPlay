@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/includes/data.php';
+$destacados = obtenerProductosDestacados(4);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,19 +15,19 @@
 
 <header class="site">
   <div class="nav-wrap">
-    <a href="index.html" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
+    <a href="index.php" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
     <nav class="main-nav">
-      <a href="index.html" class="active">Inicio</a>
-      <a href="pages/tienda.html">Tienda</a>
-      <a href="pages/blog.html">Blog y Noticias</a>
-      <a href="pages/soporte.html">Soporte</a>
+      <a href="index.php" class="active">Inicio</a>
+      <a href="pages/tienda.php">Tienda</a>
+      <a href="pages/blog.php">Blog y Noticias</a>
+      <a href="pages/soporte.php">Soporte</a>
     </nav>
-    
+
     <div class="nav-actions">
-      <a href="pages/tienda.html" class="icon-btn" aria-label="Ir al buscador de la tienda" title="Buscar">
+      <a href="pages/tienda.php" class="icon-btn" aria-label="Ir al buscador de la tienda" title="Buscar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
       </a>
-      <a href="pages/tienda.html" class="icon-btn" aria-label="Ver carrito" title="Carrito">
+      <a href="pages/tienda.php" class="icon-btn" aria-label="Ver carrito" title="Carrito">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h9.2a2 2 0 0 0 2-1.6L22 7H6"/></svg>
       </a>
       <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -43,8 +47,8 @@
         <h1>Tu próxima <em>partida</em><br>empieza en NexPlay</h1>
         <p class="lead">Consolas, videojuegos y accesorios con fichas técnicas reales, reseñas verificadas por compra y una comunidad gamer mexicana que te ayuda a decidir mejor.</p>
         <div class="hero-cta">
-          <a href="pages/tienda.html" class="btn btn-primary">Explorar tienda →</a>
-          <a href="pages/blog.html" class="btn btn-ghost">Leer el blog</a>
+          <a href="pages/tienda.php" class="btn btn-primary">Explorar tienda →</a>
+          <a href="pages/blog.php" class="btn btn-ghost">Leer el blog</a>
         </div>
         <div class="hero-stats">
           <div><strong>75M+</strong><span>Jugadores en México</span></div>
@@ -68,16 +72,16 @@
         <p>Filtra el catálogo completo directamente por tu ecosistema favorito, desde lo último en PS5 hasta el cartucho retro que buscabas.</p>
       </div>
       <div class="platform-row">
-        <a class="platform-pill" href="pages/tienda.html"><img src="assets/img/console-ps.svg" alt="PS5">PlayStation 5</a>
-        <a class="platform-pill" href="pages/tienda.html"><img src="assets/img/console-xbox.svg" alt="Xbox Series X|S">Xbox Series X|S</a>
-        <a class="platform-pill" href="pages/tienda.html"><img src="assets/img/console-switch.svg" alt="Nintendo Switch">Nintendo Switch</a>
-        <a class="platform-pill" href="pages/tienda.html"><img src="assets/img/acc-keyboard.svg" alt="PC Gaming">PC Gaming</a>
-        <a class="platform-pill" href="pages/tienda.html"><img src="assets/img/console-retro.svg" alt="Retrogaming">Retrogaming</a>
+        <a class="platform-pill" href="pages/tienda.php"><img src="assets/img/console-ps.svg" alt="PS5">PlayStation 5</a>
+        <a class="platform-pill" href="pages/tienda.php"><img src="assets/img/console-xbox.svg" alt="Xbox Series X|S">Xbox Series X|S</a>
+        <a class="platform-pill" href="pages/tienda.php"><img src="assets/img/console-switch.svg" alt="Nintendo Switch">Nintendo Switch</a>
+        <a class="platform-pill" href="pages/tienda.php"><img src="assets/img/acc-keyboard.svg" alt="PC Gaming">PC Gaming</a>
+        <a class="platform-pill" href="pages/tienda.php"><img src="assets/img/console-retro.svg" alt="Retrogaming">Retrogaming</a>
       </div>
     </div>
   </section>
 
-  <!-- DESTACADOS -->
+  <!-- DESTACADOS (dinámico: base de datos o respaldo) -->
   <section>
     <div class="container">
       <div class="section-head">
@@ -86,54 +90,25 @@
         <p>Selección curada por nuestro equipo editorial, con precio actual, historial de precio y calificación verificada por compra.</p>
       </div>
       <div class="grid grid-4">
+        <?php foreach ($destacados as $p): ?>
         <div class="card">
-          <div class="media"><img src="assets/img/console-ps.svg" alt="Consola PlayStation 5 en fondo oscuro" loading="lazy"></div>
+          <div class="media"><img src="<?= htmlspecialchars($p['imagen']) ?>" alt="<?= htmlspecialchars($p['nombre']) ?>" loading="lazy"></div>
           <div class="body">
-            <span class="tag">Consola</span>
-            <h3>PlayStation 5 Slim</h3>
-            <p class="desc">1TB SSD, control DualSense incluido.</p>
+            <span class="tag"><?= htmlspecialchars($p['tipo']) ?></span>
+            <h3><?= htmlspecialchars($p['nombre']) ?></h3>
+            <p class="desc"><?= htmlspecialchars($p['descripcion']) ?></p>
             <div class="meta">
-              <span class="price">$11,499</span>
-              <span class="stars">★★★★★</span>
+              <span class="price">
+                <?php if (!empty($p['precio_anterior'])): ?>
+                  <span class="old"><?= formatoPrecio($p['precio_anterior']) ?></span>
+                <?php endif; ?>
+                <?= formatoPrecio($p['precio']) ?>
+              </span>
+              <span class="stars"><?= renderEstrellas($p['calificacion']) ?></span>
             </div>
           </div>
         </div>
-        <div class="card">
-          <div class="media"><img src="assets/img/console-switch.svg" alt="Consola híbrida portátil Nintendo Switch" loading="lazy"></div>
-          <div class="body">
-            <span class="tag">Consola</span>
-            <h3>Switch OLED</h3>
-            <p class="desc">Pantalla OLED de 7", edición estándar.</p>
-            <div class="meta">
-              <span class="price"><span class="old">$8,999</span>$7,799</span>
-              <span class="stars">★★★★☆</span>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="media"><img src="assets/img/acc-headset.svg" alt="Audífonos gaming inalámbricos con micrófono" loading="lazy"></div>
-          <div class="body">
-            <span class="tag">Accesorio</span>
-            <h3>Headset Inalámbrico Pro</h3>
-            <p class="desc">Sonido envolvente 7.1, batería 20h.</p>
-            <div class="meta">
-              <span class="price">$1,899</span>
-              <span class="stars">★★★★★</span>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="media"><img src="assets/img/console-retro.svg" alt="Cartucho retro edición coleccionista" loading="lazy"></div>
-          <div class="body">
-            <span class="tag">Retro</span>
-            <h3>Cartucho Colección 16-bit</h3>
-            <p class="desc">Edición restaurada, caja e instructivo.</p>
-            <div class="meta">
-              <span class="price">$1,299</span>
-              <span class="stars">★★★★☆</span>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
@@ -147,7 +122,7 @@
           <h3>NexPlay+</h3>
           <p>Envío gratis ilimitado, 5% de cashback en cada compra, acceso prioritario a preventas y precio preferencial en bundles. Precio especial para estudiantes.</p>
         </div>
-        <a href="pages/tienda.html" class="btn btn-orange">Conocer beneficios →</a>
+        <a href="pages/tienda.php" class="btn btn-orange">Conocer beneficios →</a>
       </div>
     </div>
   </section>
@@ -199,25 +174,25 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="index.html" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
+        <a href="index.php" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
         <p style="margin-top:14px; max-width:280px;">Tienda de videojuegos, consolas y accesorios con contenido editorial y comunidad gamer mexicana.</p>
       </div>
       <div>
         <h4>Explorar</h4>
         <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="pages/tienda.html">Tienda</a></li>
-          <li><a href="pages/blog.html">Blog y Noticias</a></li>
-          <li><a href="pages/soporte.html">Soporte</a></li>
+          <li><a href="index.php">Inicio</a></li>
+          <li><a href="pages/tienda.php">Tienda</a></li>
+          <li><a href="pages/blog.php">Blog y Noticias</a></li>
+          <li><a href="pages/soporte.php">Soporte</a></li>
         </ul>
       </div>
       <div>
         <h4>Plataformas</h4>
         <ul>
-          <li><a href="pages/tienda.html">PlayStation 5</a></li>
-          <li><a href="pages/tienda.html">Xbox Series X|S</a></li>
-          <li><a href="pages/tienda.html">Nintendo Switch</a></li>
-          <li><a href="pages/tienda.html">Retrogaming</a></li>
+          <li><a href="pages/tienda.php">PlayStation 5</a></li>
+          <li><a href="pages/tienda.php">Xbox Series X|S</a></li>
+          <li><a href="pages/tienda.php">Nintendo Switch</a></li>
+          <li><a href="pages/tienda.php">Retrogaming</a></li>
         </ul>
       </div>
       <div>

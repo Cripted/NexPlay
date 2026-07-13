@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260">
+  <defs>
+    <linearGradient id="guia" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="guia-line" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="260" rx="18" fill="#150f2b"/>
+  <rect width="400" height="260" rx="18" fill="url(#guia)"/>
+  <rect x="1" y="1" width="398" height="258" rx="17" fill="none" stroke="#2a2150" stroke-width="2"/>
+  
+  <g transform="translate(200,130)">
+    <circle cx="0" cy="0" r="50" fill="none" stroke="url(#guia-line)" stroke-width="7"/>
+    <path d="M-20,20 L8,-8 L20,-20 L-8,8 Z" fill="none" stroke="#f472b6" stroke-width="5" stroke-linejoin="round"/>
+  </g>
+  <text x="200.0" y="238" text-anchor="middle" font-family="Rajdhani, Arial, sans-serif"
+        font-size="22" font-weight="700" fill="#f4f2ff" opacity="0.92">Guía de compra</text>
+</svg>

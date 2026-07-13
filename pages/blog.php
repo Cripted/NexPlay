@@ -1,28 +1,32 @@
+<?php
+require_once __DIR__ . '/../includes/data.php';
+$posts = obtenerBlogPosts();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog y Noticias · NexPlay</title>
-<meta name="description" content="Reseñas, avances, cobertura de eventos y guías de compra del mundo gamer, por el equipo editorial de NexPlay.">
+<meta name="description" content="Reseñas, avances, eventos y guías de compra del mundo gamer, por el equipo editorial de NexPlay.">
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <header class="site">
   <div class="nav-wrap">
-    <a href="../index.html" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
+    <a href="../index.php" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
     <nav class="main-nav">
-      <a href="../index.html">Inicio</a>
-      <a href="tienda.html">Tienda</a>
-      <a href="blog.html" class="active">Blog y Noticias</a>
-      <a href="soporte.html">Soporte</a>
+      <a href="../index.php">Inicio</a>
+      <a href="tienda.php">Tienda</a>
+      <a href="blog.php" class="active">Blog y Noticias</a>
+      <a href="soporte.php">Soporte</a>
     </nav>
     <div class="nav-actions">
-      <a href="tienda.html" class="icon-btn" aria-label="Ir al buscador de la tienda" title="Buscar">
+      <a href="tienda.php" class="icon-btn" aria-label="Ir al buscador de la tienda" title="Buscar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
       </a>
-      <a href="tienda.html" class="icon-btn" aria-label="Ver carrito" title="Carrito">
+      <a href="tienda.php" class="icon-btn" aria-label="Ver carrito" title="Carrito">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h9.2a2 2 0 0 0 2-1.6L22 7H6"/></svg>
       </a>
       <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -43,9 +47,25 @@
 
   <section>
     <div class="container">
-      <p style="font-size:.8rem; opacity:.65;" id="blog-source-tag"></p>
-      <!-- ARTÍCULOS: se llenan dinámicamente desde api/blog.php (con respaldo si la BD no responde) -->
-      <div class="article-list" id="article-list"></div>
+      <div class="article-list">
+        <?php foreach ($posts as $post): ?>
+        <article class="article-card">
+          <div class="media"><img src="../<?= htmlspecialchars($post['imagen']) ?>" alt="<?= htmlspecialchars($post['titulo']) ?>" loading="lazy"></div>
+          <div class="body">
+            <span class="<?= badgeClase($post['categoria']) ?>"><?= htmlspecialchars($post['categoria']) ?></span>
+            <h3><?= htmlspecialchars($post['titulo']) ?></h3>
+            <p class="excerpt"><?= htmlspecialchars($post['extracto']) ?></p>
+            <div class="full">
+              <p><?= htmlspecialchars($post['contenido']) ?></p>
+            </div>
+            <div class="row-meta">
+              <span class="date"><?= fechaEs($post['fecha_publicacion']) ?></span>
+              <button class="read-more">Leer más →</button>
+            </div>
+          </div>
+        </article>
+        <?php endforeach; ?>
+      </div>
     </div>
   </section>
 </main>
@@ -54,25 +74,25 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="../index.html" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
+        <a href="../index.php" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
         <p style="margin-top:14px; max-width:280px;">Tienda de videojuegos, consolas y accesorios con contenido editorial y comunidad gamer mexicana.</p>
       </div>
       <div>
         <h4>Explorar</h4>
         <ul>
-          <li><a href="../index.html">Inicio</a></li>
-          <li><a href="tienda.html">Tienda</a></li>
-          <li><a href="blog.html">Blog y Noticias</a></li>
-          <li><a href="soporte.html">Soporte</a></li>
+          <li><a href="../index.php">Inicio</a></li>
+          <li><a href="tienda.php">Tienda</a></li>
+          <li><a href="blog.php">Blog y Noticias</a></li>
+          <li><a href="soporte.php">Soporte</a></li>
         </ul>
       </div>
       <div>
         <h4>Plataformas</h4>
         <ul>
-          <li><a href="tienda.html">PlayStation 5</a></li>
-          <li><a href="tienda.html">Xbox Series X|S</a></li>
-          <li><a href="tienda.html">Nintendo Switch</a></li>
-          <li><a href="tienda.html">Retrogaming</a></li>
+          <li><a href="tienda.php">PlayStation 5</a></li>
+          <li><a href="tienda.php">Xbox Series X|S</a></li>
+          <li><a href="tienda.php">Nintendo Switch</a></li>
+          <li><a href="tienda.php">Retrogaming</a></li>
         </ul>
       </div>
       <div>

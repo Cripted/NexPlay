@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="switch" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f87171" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="switch-line" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="18" fill="#150f2b"/>
+  <rect width="400" height="300" rx="18" fill="url(#switch)"/>
+  <rect x="1" y="1" width="398" height="298" rx="17" fill="none" stroke="#2a2150" stroke-width="2"/>
+  
+  <g transform="translate(200,150)">
+    <rect x="-70" y="-45" width="55" height="90" rx="16" fill="none" stroke="#f87171" stroke-width="7"/>
+    <rect x="15" y="-45" width="55" height="90" rx="16" fill="none" stroke="#22d3ee" stroke-width="7"/>
+    <rect x="-15" y="-20" width="30" height="40" rx="6" fill="none" stroke="url(#switch-line)" stroke-width="5"/>
+  </g>
+  <text x="200.0" y="278" text-anchor="middle" font-family="Rajdhani, Arial, sans-serif"
+        font-size="22" font-weight="700" fill="#f4f2ff" opacity="0.92">Nintendo Switch OLED</text>
+</svg>

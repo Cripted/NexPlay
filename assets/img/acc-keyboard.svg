@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="keyboard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#facc15" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="keyboard-line" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#facc15"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="18" fill="#150f2b"/>
+  <rect width="400" height="300" rx="18" fill="url(#keyboard)"/>
+  <rect x="1" y="1" width="398" height="298" rx="17" fill="none" stroke="#2a2150" stroke-width="2"/>
+  
+  <g transform="translate(200,150)">
+    <rect x="-80" y="-35" width="160" height="70" rx="10" fill="none" stroke="url(#keyboard-line)" stroke-width="6"/>
+    <g stroke="#fb923c" stroke-width="4">
+      <line x1="-64" y1="-15" x2="-64" y2="-15.1"/>
+      <line x1="-40" y1="-15" x2="-40" y2="-15.1"/>
+      <line x1="-16" y1="-15" x2="-16" y2="-15.1"/>
+      <line x1="8"   y1="-15" x2="8"   y2="-15.1"/>
+      <line x1="32"  y1="-15" x2="32"  y2="-15.1"/>
+      <line x1="56"  y1="-15" x2="56"  y2="-15.1"/>
+    </g>
+    <rect x="-50" y="8" width="100" height="12" rx="4" fill="none" stroke="#facc15" stroke-width="4"/>
+  </g>
+  <text x="200.0" y="278" text-anchor="middle" font-family="Rajdhani, Arial, sans-serif"
+        font-size="22" font-weight="700" fill="#f4f2ff" opacity="0.92">Teclado Mecánico RGB</text>
+</svg>

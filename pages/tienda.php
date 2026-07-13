@@ -1,3 +1,8 @@
+<?php
+require_once __DIR__ . '/../includes/data.php';
+$productos = obtenerProductos();
+$total = count($productos);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,12 +16,12 @@
 
 <header class="site">
   <div class="nav-wrap">
-    <a href="../index.html" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
+    <a href="../index.php" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
     <nav class="main-nav">
-      <a href="../index.html">Inicio</a>
-      <a href="tienda.html" class="active">Tienda</a>
-      <a href="blog.html">Blog y Noticias</a>
-      <a href="soporte.html">Soporte</a>
+      <a href="../index.php">Inicio</a>
+      <a href="tienda.php" class="active">Tienda</a>
+      <a href="blog.php">Blog y Noticias</a>
+      <a href="soporte.php">Soporte</a>
     </nav>
     <div class="nav-actions">
       <a href="#tienda-catalogo" class="icon-btn" aria-label="Ir al buscador" title="Buscar">
@@ -68,14 +73,37 @@
           <span class="chip" data-platform="pc">PC Gaming</span>
           <span class="chip" data-platform="retro">Retrogaming</span>
         </div>
-        <p class="results-count" id="results-count">Cargando productos…</p>
-        <p style="font-size:.8rem; opacity:.65; margin-top:-6px;" id="data-source-tag"></p>
+        <p class="results-count" id="results-count"><?= $total ?> productos encontrados</p>
       </div>
 
-      <!-- GRID DE PRODUCTOS: se llena dinámicamente desde api/productos.php (con respaldo si la BD no responde) -->
-      <div class="grid grid-4" id="product-grid"></div>
+      <!-- GRID DE PRODUCTOS (dinámico: base de datos o respaldo) -->
+      <div class="grid grid-4" id="product-grid">
+        <?php foreach ($productos as $p): ?>
+        <div class="card" data-product
+             data-name="<?= htmlspecialchars($p['nombre']) ?>"
+             data-platform="<?= htmlspecialchars($p['plataforma']) ?>"
+             data-price="<?= (float)$p['precio'] ?>"
+             data-rating="<?= (float)$p['calificacion'] ?>">
+          <div class="media"><img src="../<?= htmlspecialchars($p['imagen']) ?>" alt="<?= htmlspecialchars($p['nombre']) ?>" loading="lazy"></div>
+          <div class="body">
+            <span class="tag"><?= htmlspecialchars($p['tipo']) ?></span>
+            <h3><?= htmlspecialchars($p['nombre']) ?></h3>
+            <p class="desc"><?= htmlspecialchars($p['descripcion']) ?></p>
+            <div class="meta">
+              <span class="price">
+                <?php if (!empty($p['precio_anterior'])): ?>
+                  <span class="old"><?= formatoPrecio($p['precio_anterior']) ?></span>
+                <?php endif; ?>
+                <?= formatoPrecio($p['precio']) ?>
+              </span>
+              <span class="stars"><?= renderEstrellas($p['calificacion']) ?></span>
+            </div>
+          </div>
+        </div>
+        <?php endforeach; ?>
+      </div>
 
-      <p class="empty-state" id="empty-state" style="display:none;">Sin resultados. Prueba con otro término o quita algún filtro.</p>
+      <p class="empty-state" id="empty-state">Sin resultados. Prueba con otro término o quita algún filtro.</p>
     </div>
   </section>
 </main>
@@ -84,25 +112,25 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="../index.html" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
+        <a href="../index.php" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
         <p style="margin-top:14px; max-width:280px;">Tienda de videojuegos, consolas y accesorios con contenido editorial y comunidad gamer mexicana.</p>
       </div>
       <div>
         <h4>Explorar</h4>
         <ul>
-          <li><a href="../index.html">Inicio</a></li>
-          <li><a href="tienda.html">Tienda</a></li>
-          <li><a href="blog.html">Blog y Noticias</a></li>
-          <li><a href="soporte.html">Soporte</a></li>
+          <li><a href="../index.php">Inicio</a></li>
+          <li><a href="tienda.php">Tienda</a></li>
+          <li><a href="blog.php">Blog y Noticias</a></li>
+          <li><a href="soporte.php">Soporte</a></li>
         </ul>
       </div>
       <div>
         <h4>Plataformas</h4>
         <ul>
-          <li><a href="tienda.html">PlayStation 5</a></li>
-          <li><a href="tienda.html">Xbox Series X|S</a></li>
-          <li><a href="tienda.html">Nintendo Switch</a></li>
-          <li><a href="tienda.html">Retrogaming</a></li>
+          <li><a href="tienda.php">PlayStation 5</a></li>
+          <li><a href="tienda.php">Xbox Series X|S</a></li>
+          <li><a href="tienda.php">Nintendo Switch</a></li>
+          <li><a href="tienda.php">Retrogaming</a></li>
         </ul>
       </div>
       <div>

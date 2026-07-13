@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="ps" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="ps-line" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="18" fill="#150f2b"/>
+  <rect width="400" height="300" rx="18" fill="url(#ps)"/>
+  <rect x="1" y="1" width="398" height="298" rx="17" fill="none" stroke="#2a2150" stroke-width="2"/>
+  
+  <g transform="translate(200,150)">
+    <path d="M-70,-40 L-40,-70 L40,-70 L70,-40 L70,40 L40,70 L-40,70 L-70,40 Z"
+          fill="none" stroke="url(#ps-line)" stroke-width="7" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="22" fill="none" stroke="#22d3ee" stroke-width="5"/>
+    <circle cx="0" cy="0" r="6" fill="#22d3ee"/>
+  </g>
+  <text x="200.0" y="278" text-anchor="middle" font-family="Rajdhani, Arial, sans-serif"
+        font-size="22" font-weight="700" fill="#f4f2ff" opacity="0.92">PlayStation 5 Slim</text>
+</svg>

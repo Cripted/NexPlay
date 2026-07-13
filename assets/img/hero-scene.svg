@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520">
+  <defs>
+    <linearGradient id="hero" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="hero-line" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="520" rx="18" fill="#150f2b"/>
+  <rect width="640" height="520" rx="18" fill="url(#hero)"/>
+  <rect x="1" y="1" width="638" height="518" rx="17" fill="none" stroke="#2a2150" stroke-width="2"/>
+  
+  <g opacity="0.5" stroke="#2a2150" stroke-width="1">
+    <line x1="0" y1="130" x2="640" y2="130"/>
+    <line x1="0" y1="260" x2="640" y2="260"/>
+    <line x1="0" y1="390" x2="640" y2="390"/>
+    <line x1="160" y1="0" x2="160" y2="520"/>
+    <line x1="320" y1="0" x2="320" y2="520"/>
+    <line x1="480" y1="0" x2="480" y2="520"/>
+  </g>
+  <g transform="translate(320,260)">
+    <ellipse cx="0" cy="90" rx="150" ry="18" fill="#7c3aed" opacity="0.18"/>
+    <path d="M-140,10 q0,-60 60,-60 h160 q60,0 60,60 v20 q0,70 -44,70 q-28,0 -36,-30 h-100 q-8,30 -36,30 q-44,0 -44,-70 Z"
+          fill="none" stroke="url(#hero-line)" stroke-width="10" stroke-linejoin="round"/>
+    <line x1="-80" y1="6" x2="-80" y2="26" stroke="#22d3ee" stroke-width="8"/>
+    <line x1="-100" y1="16" x2="-60" y2="16" stroke="#22d3ee" stroke-width="8"/>
+    <circle cx="84" cy="0" r="10" fill="#f472b6"/>
+    <circle cx="112" cy="18" r="10" fill="#f472b6"/>
+    <circle cx="0" cy="-100" r="34" fill="none" stroke="#facc15" stroke-width="3" opacity="0.7"/>
+    <circle cx="0" cy="-100" r="4" fill="#facc15"/>
+  </g>
+  <text x="320.0" y="498" text-anchor="middle" font-family="Rajdhani, Arial, sans-serif"
+        font-size="28" font-weight="700" fill="#f4f2ff" opacity="0.92">NexPlay</text>
+</svg>

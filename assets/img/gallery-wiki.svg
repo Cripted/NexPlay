@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="wiki" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#f472b6" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="wiki-line" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="18" fill="#150f2b"/>
+  <rect width="400" height="300" rx="18" fill="url(#wiki)"/>
+  <rect x="1" y="1" width="398" height="298" rx="17" fill="none" stroke="#2a2150" stroke-width="2"/>
+  
+  <g transform="translate(200,150)">
+    <path d="M-55,-40 h50 a10,10 0 0 1 10,10 v60 h-60 Z" fill="none" stroke="url(#wiki-line)" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M55,-40 h-50 a10,10 0 0 0 -10,10 v60 h60 Z" fill="none" stroke="#f472b6" stroke-width="6" stroke-linejoin="round"/>
+    <line x1="0" y1="-30" x2="0" y2="28" stroke="#a78bfa" stroke-width="4"/>
+  </g>
+  <text x="200.0" y="278" text-anchor="middle" font-family="Rajdhani, Arial, sans-serif"
+        font-size="19" font-weight="700" fill="#f4f2ff" opacity="0.92">Wikis y guías colaborativas</text>
+</svg>

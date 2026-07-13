@@ -11,18 +11,18 @@
 
 <header class="site">
   <div class="nav-wrap">
-    <a href="../index.html" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
+    <a href="../index.php" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
     <nav class="main-nav">
-      <a href="../index.html">Inicio</a>
-      <a href="tienda.html">Tienda</a>
-      <a href="blog.html">Blog y Noticias</a>
-      <a href="soporte.html" class="active">Soporte</a>
+      <a href="../index.php">Inicio</a>
+      <a href="tienda.php">Tienda</a>
+      <a href="blog.php">Blog y Noticias</a>
+      <a href="soporte.php" class="active">Soporte</a>
     </nav>
     <div class="nav-actions">
-      <a href="tienda.html" class="icon-btn" aria-label="Ir al buscador de la tienda" title="Buscar">
+      <a href="tienda.php" class="icon-btn" aria-label="Ir al buscador de la tienda" title="Buscar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
       </a>
-      <a href="tienda.html" class="icon-btn" aria-label="Ver carrito" title="Carrito">
+      <a href="tienda.php" class="icon-btn" aria-label="Ver carrito" title="Carrito">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h9.2a2 2 0 0 0 2-1.6L22 7H6"/></svg>
       </a>
       <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
@@ -164,25 +164,25 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="../index.html" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
+        <a href="../index.php" class="logo"><span class="dot"></span>Nex<span>Play</span></a>
         <p style="margin-top:14px; max-width:280px;">Tienda de videojuegos, consolas y accesorios con contenido editorial y comunidad gamer mexicana.</p>
       </div>
       <div>
         <h4>Explorar</h4>
         <ul>
-          <li><a href="../index.html">Inicio</a></li>
-          <li><a href="tienda.html">Tienda</a></li>
-          <li><a href="blog.html">Blog y Noticias</a></li>
-          <li><a href="soporte.html">Soporte</a></li>
+          <li><a href="../index.php">Inicio</a></li>
+          <li><a href="tienda.php">Tienda</a></li>
+          <li><a href="blog.php">Blog y Noticias</a></li>
+          <li><a href="soporte.php">Soporte</a></li>
         </ul>
       </div>
       <div>
         <h4>Plataformas</h4>
         <ul>
-          <li><a href="tienda.html">PlayStation 5</a></li>
-          <li><a href="tienda.html">Xbox Series X|S</a></li>
-          <li><a href="tienda.html">Nintendo Switch</a></li>
-          <li><a href="tienda.html">Retrogaming</a></li>
+          <li><a href="tienda.php">PlayStation 5</a></li>
+          <li><a href="tienda.php">Xbox Series X|S</a></li>
+          <li><a href="tienda.php">Nintendo Switch</a></li>
+          <li><a href="tienda.php">Retrogaming</a></li>
         </ul>
       </div>
       <div>

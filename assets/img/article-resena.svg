@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260">
+  <defs>
+    <linearGradient id="resena" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#f472b6" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="resena-line" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="260" rx="18" fill="#150f2b"/>
+  <rect width="400" height="260" rx="18" fill="url(#resena)"/>
+  <rect x="1" y="1" width="398" height="258" rx="17" fill="none" stroke="#2a2150" stroke-width="2"/>
+  
+  <g transform="translate(200,130)">
+    <path d="M0,-45 L13,-14 L47,-14 L20,6 L30,40 L0,20 L-30,40 L-20,6 L-47,-14 L-13,-14 Z"
+          fill="none" stroke="url(#resena-line)" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <text x="200.0" y="238" text-anchor="middle" font-family="Rajdhani, Arial, sans-serif"
+        font-size="22" font-weight="700" fill="#f4f2ff" opacity="0.92">Reseña</text>
+</svg>
