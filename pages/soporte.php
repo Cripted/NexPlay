@@ -1,10 +1,3 @@
-<?php
-require_once __DIR__ . '/../includes/auth.php';
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-$cartCount = isset($_SESSION['carrito']) ? array_sum(array_column($_SESSION['carrito'], 'cantidad')) : 0;
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -37,23 +30,8 @@ $cartCount = isset($_SESSION['carrito']) ? array_sum(array_column($_SESSION['car
       </a>
       <a href="carrito.php" class="icon-btn" aria-label="Ver carrito" title="Carrito" style="position:relative;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h9.2a2 2 0 0 0 2-1.6L22 7H6"/></svg>
-        <?php if ($cartCount > 0): ?>
-          <span class="nav-cart-badge"><?= $cartCount ?></span>
-        <?php endif; ?>
       </a>
-
-      <?php if (isLoggedIn()): ?>
-        <?php $u = getCurrentUser(); ?>
-        <span class="nav-user-span" style="font-size:0.85rem; color:var(--cyan); display:inline-flex; align-items:center; gap:4px; font-weight: 500;">
-          👤 <span style="max-width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><?= htmlspecialchars($u['nombre']) ?></span>
-        </span>
-        <?php if ($u['rol'] === 'admin'): ?>
-          <a href="../admin/index.php" class="btn btn-ghost" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 6px; font-family: var(--font-display); transform: none;">Admin</a>
-        <?php endif; ?>
-        <a href="logout.php" class="btn btn-ghost" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 6px; border-color: var(--pink); color: var(--pink); font-family: var(--font-display); transform: none;">Salir</a>
-      <?php else: ?>
-        <a href="login.php" class="btn btn-primary" style="padding: 7px 14px; font-size: 0.75rem; border-radius: 6px; font-family: var(--font-display); color:#0a0716; transform: none;">Acceder</a>
-      <?php endif; ?>
+      <a href="login.php" class="btn btn-primary" style="padding: 7px 14px; font-size: 0.75rem; border-radius: 6px; font-family: var(--font-display); color:#0a0716; transform: none;">Acceder</a>
       <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
