@@ -374,6 +374,28 @@ nav.main-nav a.active{ color: #0a0716; background: var(--grad-pc); }
 .read-more:hover{ text-decoration: underline; }
 .date{ font-family: var(--font-mono); font-size:.76rem; color: var(--muted-2); }
 
+/* --- Contenido HTML de artículos (rich text) --- */
+.article-content { font-size: .92rem; color: var(--muted); line-height: 1.7; }
+.article-content p  { margin-bottom: 10px; }
+.article-content p:last-child { margin-bottom: 0; }
+.article-content strong, .article-content b { color: #fff; font-weight: 600; }
+.article-content em, .article-content i { color: var(--cyan-soft, #a5f3fc); font-style: italic; }
+.article-content h2 { font-size: 1.05rem; color: #fff; margin: 14px 0 6px; font-family: var(--font-display); }
+.article-content h3 { font-size: .98rem; color: var(--cyan); margin: 12px 0 5px; }
+.article-content ul, .article-content ol { padding-left: 18px; margin-bottom: 10px; }
+.article-content li { margin-bottom: 4px; }
+.article-content blockquote {
+  border-left: 3px solid var(--cyan);
+  padding: 8px 14px;
+  margin: 12px 0;
+  background: rgba(34,211,238,.06);
+  border-radius: 0 6px 6px 0;
+  color: var(--muted);
+  font-style: italic;
+}
+.article-content blockquote p { margin-bottom: 0; }
+.article-content a { color: var(--cyan); text-decoration: underline; }
+
 /* ---------- Gallery module (lightbox) ---------- */
 .gallery-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:16px; }
 .gallery-item{
@@ -605,4 +627,19 @@ footer.site{
   .footer-grid{ grid-template-columns: 1fr; }
   .two-col{ grid-template-columns: 1fr; }
   .promo{ flex-direction:column; align-items:flex-start; }
+}
+
+/* Shopping Cart Badge */
+.nav-cart-badge {
+  background: var(--pink);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 99px;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  border: 2px solid var(--bg-alt);
+  line-height: 1;
 }

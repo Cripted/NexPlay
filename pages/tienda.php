@@ -1,7 +1,12 @@
 <?php
 require_once __DIR__ . '/../includes/data.php';
+require_once __DIR__ . '/../includes/auth.php';
 $productos = obtenerProductos();
 $total = count($productos);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$cartCount = isset($_SESSION['carrito']) ? array_sum(array_column($_SESSION['carrito'], 'cantidad')) : 0;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -11,6 +16,11 @@ $total = count($productos);
 <title>Tienda · NexPlay</title>
 <meta name="description" content="Catálogo NexPlay: consolas, accesorios y videojuegos con buscador y filtros por plataforma.">
 <link rel="stylesheet" href="../css/style.css">
+<style>
+@media (max-width: 576px) {
+  .nav-user-span { display: none !important; }
+}
+</style>
 </head>
 <body>
 
@@ -24,13 +34,29 @@ $total = count($productos);
       <a href="comunidad.php">Comunidad</a>
       <a href="soporte.php">Soporte</a>
     </nav>
-    <div class="nav-actions">
+    <div class="nav-actions" style="display:flex; align-items:center; gap:8px;">
       <a href="#tienda-catalogo" class="icon-btn" aria-label="Ir al buscador" title="Buscar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
       </a>
-      <a href="#" class="icon-btn" aria-label="Ver carrito" title="Carrito">
+      <a href="carrito.php" class="icon-btn" aria-label="Ver carrito" title="Carrito" style="position:relative;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h9.2a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+        <?php if ($cartCount > 0): ?>
+          <span class="nav-cart-badge"><?= $cartCount ?></span>
+        <?php endif; ?>
       </a>
+
+      <?php if (isLoggedIn()): ?>
+        <?php $u = getCurrentUser(); ?>
+        <span class="nav-user-span" style="font-size:0.85rem; color:var(--cyan); display:inline-flex; align-items:center; gap:4px; font-weight: 500;">
+          👤 <span style="max-width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><?= htmlspecialchars($u['nombre']) ?></span>
+        </span>
+        <?php if ($u['rol'] === 'admin'): ?>
+          <a href="../admin/index.php" class="btn btn-ghost" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 6px; font-family: var(--font-display); transform: none;">Admin</a>
+        <?php endif; ?>
+        <a href="logout.php" class="btn btn-ghost" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 6px; border-color: var(--pink); color: var(--pink); font-family: var(--font-display); transform: none;">Salir</a>
+      <?php else: ?>
+        <a href="login.php" class="btn btn-primary" style="padding: 7px 14px; font-size: 0.75rem; border-radius: 6px; font-family: var(--font-display); color:#0a0716; transform: none;">Acceder</a>
+      <?php endif; ?>
       <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
@@ -85,21 +111,23 @@ $total = count($productos);
              data-platform="<?= htmlspecialchars($p['plataforma']) ?>"
              data-price="<?= (float)$p['precio'] ?>"
              data-rating="<?= (float)$p['calificacion'] ?>">
-          <div class="media"><img src="../<?= htmlspecialchars($p['imagen']) ?>" alt="<?= htmlspecialchars($p['nombre']) ?>" loading="lazy"></div>
-          <div class="body">
-            <span class="tag"><?= htmlspecialchars($p['tipo']) ?></span>
-            <h3><?= htmlspecialchars($p['nombre']) ?></h3>
-            <p class="desc"><?= htmlspecialchars($p['descripcion']) ?></p>
-            <div class="meta">
-              <span class="price">
-                <?php if (!empty($p['precio_anterior'])): ?>
-                  <span class="old"><?= formatoPrecio($p['precio_anterior']) ?></span>
-                <?php endif; ?>
-                <?= formatoPrecio($p['precio']) ?>
-              </span>
-              <span class="stars"><?= renderEstrellas($p['calificacion']) ?></span>
+          <a href="producto.php?id=<?= $p['id'] ?>" style="display:flex; flex-direction:column; text-decoration:none; color:inherit; height:100%;">
+            <div class="media"><img src="../<?= htmlspecialchars($p['imagen']) ?>" alt="<?= htmlspecialchars($p['nombre']) ?>" loading="lazy"></div>
+            <div class="body" style="flex:1; display:flex; flex-direction:column;">
+              <span class="tag"><?= htmlspecialchars($p['tipo']) ?></span>
+              <h3><?= htmlspecialchars($p['nombre']) ?></h3>
+              <p class="desc"><?= htmlspecialchars($p['descripcion']) ?></p>
+              <div class="meta" style="margin-top:auto;">
+                <span class="price">
+                  <?php if (!empty($p['precio_anterior'])): ?>
+                    <span class="old"><?= formatoPrecio($p['precio_anterior']) ?></span>
+                  <?php endif; ?>
+                  <?= formatoPrecio($p['precio']) ?>
+                </span>
+                <span class="stars"><?= renderEstrellas($p['calificacion']) ?></span>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
         <?php endforeach; ?>
       </div>

@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/includes/data.php';
+require_once __DIR__ . '/includes/auth.php';
 $destacados = obtenerProductosDestacados(4);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$cartCount = isset($_SESSION['carrito']) ? array_sum(array_column($_SESSION['carrito'], 'cantidad')) : 0;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,6 +15,11 @@ $destacados = obtenerProductosDestacados(4);
 <title>NexPlay · Tienda de Videojuegos, Consolas y Comunidad Gamer</title>
 <meta name="description" content="NexPlay: tienda especializada en videojuegos, consolas y accesorios con contenido editorial y comunidad gamer mexicana.">
 <link rel="stylesheet" href="css/style.css">
+<style>
+@media (max-width: 576px) {
+  .nav-user-span { display: none !important; }
+}
+</style>
 </head>
 <body>
 
@@ -24,13 +34,29 @@ $destacados = obtenerProductosDestacados(4);
       <a href="pages/soporte.php">Soporte</a>
     </nav>
 
-    <div class="nav-actions">
+    <div class="nav-actions" style="display:flex; align-items:center; gap:8px;">
       <a href="pages/tienda.php" class="icon-btn" aria-label="Ir al buscador de la tienda" title="Buscar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
       </a>
-      <a href="pages/tienda.php" class="icon-btn" aria-label="Ver carrito" title="Carrito">
+      <a href="pages/carrito.php" class="icon-btn" aria-label="Ver carrito" title="Carrito" style="position:relative;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h9.2a2 2 0 0 0 2-1.6L22 7H6"/></svg>
+        <?php if ($cartCount > 0): ?>
+          <span class="nav-cart-badge"><?= $cartCount ?></span>
+        <?php endif; ?>
       </a>
+
+      <?php if (isLoggedIn()): ?>
+        <?php $u = getCurrentUser(); ?>
+        <span class="nav-user-span" style="font-size:0.85rem; color:var(--cyan); display:inline-flex; align-items:center; gap:4px; font-weight: 500;">
+          👤 <span style="max-width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"><?= htmlspecialchars($u['nombre']) ?></span>
+        </span>
+        <?php if ($u['rol'] === 'admin'): ?>
+          <a href="admin/index.php" class="btn btn-ghost" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 6px; font-family: var(--font-display); transform: none;">Admin</a>
+        <?php endif; ?>
+        <a href="pages/logout.php" class="btn btn-ghost" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 6px; border-color: var(--pink); color: var(--pink); font-family: var(--font-display); transform: none;">Salir</a>
+      <?php else: ?>
+        <a href="pages/login.php" class="btn btn-primary" style="padding: 7px 14px; font-size: 0.75rem; border-radius: 6px; font-family: var(--font-display); color:#0a0716; transform: none;">Acceder</a>
+      <?php endif; ?>
       <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>

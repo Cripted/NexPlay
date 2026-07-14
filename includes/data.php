@@ -202,3 +202,130 @@ function badgeClase(string $categoria): string
         default                    => 'badge', // Evento, Esports
     };
 }
+
+function obtenerProductoPorId(int $id): ?array
+{
+    $pdo = conectarDB();
+    $producto = null;
+    if ($pdo) {
+        try {
+            $stmt = $pdo->prepare(
+                "SELECT p.id, p.nombre, p.tipo, p.descripcion, p.precio, p.precio_anterior,
+                        p.calificacion, p.imagen, p.destacado, p.stock, c.slug AS plataforma, p.categoria_id
+                 FROM productos p
+                 JOIN categorias c ON c.id = p.categoria_id
+                 WHERE p.id = ?"
+            );
+            $stmt->execute([$id]);
+            $producto = $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log('NexPlay DB: error al leer producto por ID - ' . $e->getMessage());
+        }
+    }
+    
+    if (!$producto) {
+        $respaldo = productosRespaldo();
+        foreach ($respaldo as $r) {
+            if ((int)$r['id'] === $id) {
+                $producto = $r;
+                $producto['stock'] = 20;
+                break;
+            }
+        }
+    }
+    
+    if ($producto) {
+        $tipo = $producto['tipo'];
+        if (strpos($tipo, 'Consola') !== false) {
+            $producto['especificaciones'] = [
+                'Procesador' => 'AMD Zen 2 de 8 núcleos a 3.5 GHz (frecuencia variable)',
+                'Gráficos' => 'Arquitectura RDNA 2 personalizada con 10.28 TFLOPs',
+                'Memoria' => '16 GB GDDR6 con ancho de banda de 448 GB/s',
+                'Almacenamiento' => 'SSD NVMe de 1 TB de velocidad ultra alta (5.5 GB/s de lectura física)',
+                'Resolución' => 'Soporte para pantallas 4K a 120Hz y tecnología Ray Tracing'
+            ];
+            $producto['caracteristicas'] = [
+                'Tiempos de carga ultra rápidos gracias al SSD de velocidad extrema.',
+                'Trazado de rayos (Ray Tracing) para iluminación y reflejos hiperrealistas.',
+                'Retrocompatibilidad total con la generación anterior de juegos.',
+                'Audio 3D Tempest para una inmersión sonora tridimensional sin precedentes.'
+            ];
+            $producto['otros'] = [
+                'Garantía' => '1 año directamente con NexPlay',
+                'Contenido del empaque' => 'Consola, 1 Control Inalámbrico oficial, Cable HDMI 2.1 de alta velocidad, Cable de alimentación y Manuales.'
+            ];
+        } elseif (strpos($tipo, 'Videojuego') !== false) {
+            $producto['especificaciones'] = [
+                'Plataforma' => 'Multiplataforma (Físico en caja original sellada)',
+                'Formato' => 'Físico (Disco o Cartucho según plataforma)',
+                'Idiomas de audio' => 'Español Latinoamericano, Inglés, Portugués',
+                'Idiomas de subtítulos' => 'Español, Inglés, Portugués, Francés',
+                'Espacio mínimo requerido' => '50 GB en almacenamiento interno'
+            ];
+            $producto['caracteristicas'] = [
+                'Optimizado con tasas de refresco altas y resolución dinámica UHD.',
+                'Soporte completo para vibración háptica y gatillos adaptativos (en mandos compatibles).',
+                'Modo rendimiento seleccionable (60 FPS estables) o modo calidad visual.',
+                'Guardado en la nube automático para que nunca pierdas tu progreso.'
+            ];
+            $producto['otros'] = [
+                'Clasificación' => 'ESRB M (Maduro 17+) o T (Adolescentes) según el juego',
+                'Distribuidor' => 'Capcom / Remedy / Nintendo Co., Ltd.',
+                'Fecha de lanzamiento' => '2026'
+            ];
+        } elseif (strpos($tipo, 'Accesorio') !== false) {
+            $producto['especificaciones'] = [
+                'Conectividad' => 'Bluetooth 5.1 inalámbrico y puerto USB tipo C',
+                'Batería' => 'Batería recargable de iones de litio de 1560 mAh integrada',
+                'Dimensiones y Peso' => '160mm x 66mm x 106mm / Aprox. 280g',
+                'Compatibilidad' => 'PC Gaming, Consolas de Nueva Generación, iOS y Android',
+                'Entradas/Salidas' => 'Conector para auriculares estéreo de 3.5 mm'
+            ];
+            $producto['caracteristicas'] = [
+                'Gatillos adaptativos con resistencia variable dinámica según la acción del juego.',
+                'Respuesta háptica con actuadores dobles que reemplazan a los motores de vibración tradicionales.',
+                'Micrófono integrado para chat de voz rápido con botón de silenciar dedicado.',
+                'Diseño ergonómico avanzado con textura antideslizante de alta duración.'
+            ];
+            $producto['otros'] = [
+                'Garantía' => '6 meses por defectos de fábrica',
+                'Contenido del empaque' => 'Accesorio NexPlay Pro, Cable de carga USB-C a USB-A y Guía de inicio rápido.'
+            ];
+        } elseif (strpos($tipo, 'Retro') !== false) {
+            $producto['especificaciones'] = [
+                'Pantalla' => 'IPS de 3.5 pulgadas con resolución 640x480 píxeles',
+                'Batería' => 'Polímero de litio de 3000 mAh (hasta 5-6 horas de juego continuo)',
+                'Memoria y Sistema' => '64 GB mediante tarjeta MicroSD externa (firmware preinstalado)',
+                'Procesador' => 'Quad-core Cortex-A7 a 1.2 GHz optimizado para emulación',
+                'Puertos' => 'Salida HDMI Mini, Conector de 3.5mm para audífonos y ranura MicroSD'
+            ];
+            $producto['caracteristicas'] = [
+                'Emulación nativa y fluida de consolas clásicas de 8-bit, 16-bit y 32-bit.',
+                'Sistema operativo de código abierto optimizado con menús rápidos y guardado de partidas rápido (Save States).',
+                'Botones traseros ergonómicos L1/L2/R1/R2 para juegos avanzados.',
+                'Altavoces estéreo traseros con perilla de volumen física analógica.'
+            ];
+            $producto['otros'] = [
+                'Garantía' => '6 meses de garantía con NexPlay',
+                'Contenido del empaque' => 'Consola portátil, Tarjeta MicroSD 64GB, Cable de carga tipo C y Manual de usuario.'
+            ];
+        } else {
+            $producto['especificaciones'] = [
+                'Categoría' => 'Equipo Gaming de alto rendimiento',
+                'Conectividad' => 'Estándar NexPlay inalámbrica o alámbrica de baja latencia',
+                'Compatibilidad' => 'Multiplataforma para máxima flexibilidad',
+                'Garantía' => '1 año directamente con NexPlay'
+            ];
+            $producto['caracteristicas'] = [
+                'Diseñado por ingenieros apasionados para brindar la mejor experiencia de juego.',
+                'Materiales de alta durabilidad y construcción robusta premium.',
+                'Instalación automática Plug and Play (sin necesidad de controladores adicionales).'
+            ];
+            $producto['otros'] = [
+                'Contenido del empaque' => 'Producto NexPlay, cable de conexión (si aplica) y guía de usuario.'
+            ];
+        }
+    }
+    
+    return $producto;
+}
